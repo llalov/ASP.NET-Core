@@ -1,5 +1,6 @@
 ﻿namespace Car_Dealer.Data.Models
 {
+    using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
 
     public class Car
@@ -16,5 +17,9 @@
 
         [Range(0, long.MaxValue)]
         public long TravelledDistance { get; set; }
+
+        public List<Sale> Sales { get; set; } = new List<Sale>();
+
+        public List<PartCar> Parts { get; set; } = new List<PartCar>();
     }
 }
