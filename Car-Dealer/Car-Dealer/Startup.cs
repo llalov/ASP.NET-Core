@@ -8,7 +8,8 @@
     using Microsoft.Extensions.DependencyInjection;
     using Car_Dealer.Data;
     using Car_Dealer.Data.Models;
-    using Car_Dealer.Services;
+    using Services;
+    using Services.Implementations;
 
     public class Startup
     {
@@ -28,6 +29,8 @@
             services.AddIdentity<User, IdentityRole>()
                 .AddEntityFrameworkStores<ApplicationDbContext>()
                 .AddDefaultTokenProviders();
+
+            services.AddTransient<ICustomerService, CustomerService>();
 
             // Add application services.
             services.AddTransient<IEmailSender, EmailSender>();
@@ -55,6 +58,11 @@
 
             app.UseMvc(routes =>
             {
+                routes.MapRoute(
+                    name: "customers",
+                    template: "customers/all/{order}",
+                    defaults: new {controller = "Customers", action = "All"});
+
                 routes.MapRoute(
                     name: "default",
                     template: "{controller=Home}/{action=Index}/{id?}");
