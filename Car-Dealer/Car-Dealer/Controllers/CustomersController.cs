@@ -3,6 +3,7 @@
     using Services;
     using Microsoft.AspNetCore.Mvc;
     using Services.Models;
+    using Models.Customers;
 
     public class CustomersController : Controller
     {
@@ -15,12 +16,18 @@
 
         public IActionResult All(string order)
         {
-            var orderDirection = order.ToLower() == "ascending"
-                ? OrderDirection.Ascending
-                : OrderDirection.Descending;
+
+            var orderDirection = order.ToLower() == "descending"
+                ? OrderDirection.Descending
+                : OrderDirection.Ascending;
 
             var result = this.customers.OrderedCustomers(orderDirection);
-            return View(result);
+
+            return View(new AllCustomersModel
+            {
+                Customers = result,
+                OrderDirection  = orderDirection
+            });
         }
     }
 }

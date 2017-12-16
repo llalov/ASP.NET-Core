@@ -8,16 +8,16 @@
 
     public class CustomerService : ICustomerService
     {
-        private readonly ApplicationDbContext db;
+        private readonly ApplicationDbContext Db;
 
         public CustomerService(ApplicationDbContext db)
         {
-            this.db = db;
+            this.Db = db;
         }
 
         public IEnumerable<CustomerModel> OrderedCustomers(OrderDirection order)
         {
-            var customersQuery = this.db.Customers.AsQueryable();
+            var customersQuery = this.Db.Customers.AsQueryable();
 
             switch (order)
             {

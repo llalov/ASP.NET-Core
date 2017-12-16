@@ -58,10 +58,10 @@
 
             app.UseMvc(routes =>
             {
-                routes.MapRoute(
-                    name: "customers",
-                    template: "customers/all/{order}",
-                    defaults: new {controller = "Customers", action = "All"});
+            routes.MapRoute(
+                name: "customers",
+                template: "customers/all/{order}",
+                defaults: new { controller = "Customers", action = "All", order = "ascending" });
 
                 routes.MapRoute(
                     name: "default",
