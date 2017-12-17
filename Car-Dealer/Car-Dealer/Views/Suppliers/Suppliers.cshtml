@@ -1,0 +1,44 @@
+﻿@model SuppliersModel
+
+@{
+    ViewData["Title"] = "Suppliers";
+}
+
+<h2>Suppliers - @Model.Type</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Id
+            </th>
+            <th>
+                Name        
+            </th>
+            <th>
+                Total Parts
+            </th>
+            <th>
+                Supply
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var supplier in Model.Suppliers) {
+        <tr>
+            <td>
+                @supplier.Id
+            </td>
+            <td>
+                @supplier.Name
+            </td>
+            <td>
+                @supplier.TotalParts
+            </td>
+            <td>
+                @(supplier.IsImporter ? "Importer" : "Local")
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

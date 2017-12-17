@@ -30,10 +30,11 @@
                 .AddEntityFrameworkStores<ApplicationDbContext>()
                 .AddDefaultTokenProviders();
 
-            services.AddTransient<ICustomerService, CustomerService>();
-
             // Add application services.
             services.AddTransient<IEmailSender, EmailSender>();
+            services.AddTransient<ICustomerService, CustomerService>();
+            services.AddTransient<ICarService, CarService>();
+            services.AddTransient<ISupplierService, SupplierService>();
 
             services.AddMvc();
         }

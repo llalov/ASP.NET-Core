@@ -13,6 +13,7 @@
         {
             this.Db = db;
         }
+
         public IEnumerable<CarModel> ByMakeCars(string make)
             => this.Db.Cars
                 .Where(c => c.Make.ToLower() == make.ToLower())
