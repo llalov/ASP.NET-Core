@@ -2,8 +2,10 @@
 {
     using System.Collections.Generic;
     using Data;
-    using Car_Dealer.Services.Models;
+    using Car_Dealer.Services.Models.Cars;
+    using Models;
     using System.Linq;
+    using Interfaces;
 
     public class CarService : ICarService
     {
@@ -13,7 +15,6 @@
         {
             this.Db = db;
         }
-
         public IEnumerable<CarModel> ByMakeCars(string make)
             => this.Db.Cars
                 .Where(c => c.Make.ToLower() == make.ToLower())
@@ -24,6 +25,21 @@
                     Make = c.Make,
                     Model = c.Model,
                     TravelledDistance = c.TravelledDistance
+                })
+                .ToList();
+
+        public IEnumerable<CarWithPartsModel> WithParts()
+            => this.Db.Cars
+                .Select(c => new CarWithPartsModel
+                {
+                    Make = c.Make,
+                    Model = c.Model,
+                    TravelledDistance = c.TravelledDistance,
+                    Parts = c.Parts.Select(p => new PartModel
+                    {
+                        Name = p.Part.Name,
+                        Price = p.Part.Price
+                    })
                 })
                 .ToList();
     }

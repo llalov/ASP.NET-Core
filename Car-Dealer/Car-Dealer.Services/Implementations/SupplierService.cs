@@ -4,6 +4,7 @@
     using Car_Dealer.Data;
     using System.Collections.Generic;
     using Car_Dealer.Services.Models;
+    using Interfaces;
 
     public class SupplierService : ISupplierService
     {

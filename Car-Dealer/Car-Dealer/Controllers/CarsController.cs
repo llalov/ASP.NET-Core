@@ -1,7 +1,7 @@
 ﻿namespace Car_Dealer.Controllers
 {
     using Microsoft.AspNetCore.Mvc;
-    using Services;
+    using Services.Interfaces;
     using Models.Cars;
 
     public class CarsController : Controller
@@ -12,7 +12,7 @@
         {
             this.Cars = cars;
         }
-        [Route("cars/{make}")]
+        [Route("cars/{make}", Order = 2)]
         public IActionResult ByMakeCars(string make)
         {
             var result = Cars.ByMakeCars(make);
@@ -21,5 +21,9 @@
                 Make = make
             });
         }
+
+        [Route("cars/parts", Order = 1)]
+        public IActionResult Parts()
+            => this.View(this.Cars.WithParts());
     }
 }

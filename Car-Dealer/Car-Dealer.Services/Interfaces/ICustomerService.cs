@@ -1,4 +1,4 @@
-﻿namespace Car_Dealer.Services
+﻿namespace Car_Dealer.Services.Interfaces
 {
     using System.Collections.Generic;
     using Models;

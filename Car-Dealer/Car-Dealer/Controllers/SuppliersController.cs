@@ -1,7 +1,7 @@
 ﻿namespace Car_Dealer.Controllers
 {
     using Microsoft.AspNetCore.Mvc;
-    using Services;
+    using Services.Interfaces;
     using Models.Suppliers;
 
     public class SuppliersController : Controller

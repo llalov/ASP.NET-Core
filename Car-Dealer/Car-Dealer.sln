@@ -7,7 +7,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Car-Dealer", "Car-Dealer\Ca
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Car-Dealer.Data", "Car-Dealer.Data\Car-Dealer.Data.csproj", "{144431E3-084F-4A7A-B101-834AB44CEF38}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Car-Dealer.Services", "Car-Dealer.Services\Car-Dealer.Services.csproj", "{C5817468-2741-40D6-9280-CECF0CFECC30}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Car-Dealer.Services", "Car-Dealer.Services\Car-Dealer.Services.csproj", "{C5817468-2741-40D6-9280-CECF0CFECC30}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

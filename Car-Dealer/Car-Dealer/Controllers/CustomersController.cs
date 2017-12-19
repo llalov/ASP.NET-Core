@@ -1,6 +1,6 @@
 ﻿namespace Car_Dealer.Controllers
 {
-    using Services;
+    using Services.Interfaces;
     using Microsoft.AspNetCore.Mvc;
     using Services.Models;
     using Models.Customers;
