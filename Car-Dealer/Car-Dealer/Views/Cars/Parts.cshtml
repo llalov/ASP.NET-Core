@@ -1,7 +1,7 @@
-﻿@model IEnumerable<CarWithPartsModel>
+﻿@model CarWithPartsModel
 
 @{
-    ViewData["Title"] = "All cars with their parts";
+    ViewData["Title"] = $"Parts - {Model.Make} {Model.Model}";
 }
 
 <h2>@ViewData["Title"]</h2>
@@ -25,28 +25,30 @@
         </tr>
     </thead>
     <tbody>
-@foreach (var car in Model) {
         <tr>
             <td>
-                @car.Make                
+                @Model.Make                
             </td>
             <td>
-                @car.Model
+                @Model.Model
             </td>
             <td>
-                @car.TravelledDistance
+                @Model.TravelledDistance km
             </td>
             <td>
                 <ul>
-                    @foreach(var part in car.Parts)
+                    @foreach (var part in Model.Parts)
                     {
                         <li>
                             @part.Name - @part.Price.ToString("F2")$
                         </li>
                     }
+                    @if (!Model.Parts.Any())
+                    {
+                        <li>No available parts</li>
+                    }
                 </ul>
             </td>
         </tr>
-}
     </tbody>
 </table>

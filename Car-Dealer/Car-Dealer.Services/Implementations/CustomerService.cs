@@ -52,6 +52,7 @@
             return customersQuery
                 .Select(c => new CustomerModel
                 {
+                    Id = c.Id,
                     Name = c.Name,
                     BirthDay = c.BirthDate,
                     IsYoungDriver = c.IsYoungDriver

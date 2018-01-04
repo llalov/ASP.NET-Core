@@ -12,6 +12,12 @@
         {
             this.Cars = cars;
         }
+
+        [Route("cars")]
+        public IActionResult AllCars()
+            => View(this.Cars.AllCars());
+        
+
         [Route("cars/{make}", Order = 2)]
         public IActionResult ByMakeCars(string make)
         {
@@ -22,8 +28,8 @@
             });
         }
 
-        [Route("cars/parts", Order = 1)]
-        public IActionResult Parts()
-            => this.View(this.Cars.WithParts());
+        [Route("cars/{id}/parts", Order = 1)]
+        public IActionResult Parts(int id)
+            => View(this.Cars.CarParts(id));
     }
 }

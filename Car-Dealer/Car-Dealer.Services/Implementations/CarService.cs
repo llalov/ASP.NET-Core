@@ -15,6 +15,19 @@
         {
             this.Db = db;
         }
+
+        public IEnumerable<CarModel> AllCars()
+            => this.Db.Cars
+            .OrderBy(c => c.Make)
+            .Select(c => new CarModel
+            {
+                Id = c.Id,
+                Make = c.Make,
+                Model = c.Model,
+                TravelledDistance = c.TravelledDistance
+            })
+            .ToList();
+
         public IEnumerable<CarModel> ByMakeCars(string make)
             => this.Db.Cars
                 .Where(c => c.Make.ToLower() == make.ToLower())
@@ -28,8 +41,9 @@
                 })
                 .ToList();
 
-        public IEnumerable<CarWithPartsModel> WithParts()
+        public CarWithPartsModel CarParts(int carId)
             => this.Db.Cars
+                .Where(c => c.Id == carId)
                 .Select(c => new CarWithPartsModel
                 {
                     Make = c.Make,
@@ -41,6 +55,6 @@
                         Price = p.Part.Price
                     })
                 })
-                .ToList();
+                .FirstOrDefault();
     }
 }

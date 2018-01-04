@@ -7,6 +7,8 @@
     {
         IEnumerable<CarModel> ByMakeCars(string make);
 
-        IEnumerable<CarWithPartsModel> WithParts();
+        CarWithPartsModel CarParts(int carId);
+
+        IEnumerable<CarModel> AllCars();
     }
 }

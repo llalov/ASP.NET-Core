@@ -1,0 +1,57 @@
+﻿@model SaleDetailsModel
+
+@{
+    ViewData["Title"] = "Sale details";
+}
+
+<h2>@ViewData["Title"]</h2>
+
+
+<table class="table table-bordered table-hover">
+    <tr>
+        <th>
+            Name
+        </th>
+        <th>
+            Is young driver
+        </th>
+        <th>
+            Car Make
+        </th>
+        <th>
+            Car Model
+        </th>
+        <th>
+            Price
+        </th>
+        <th>
+            Discount
+        </th>
+        <th>
+            Discounted Price
+        </th>
+    </tr>
+    <tr>
+        <td>
+            @Model.CustomerName
+        </td>
+        <td>
+            @(Model.IsYoungDriver == true ? "Yes" : "No")
+        </td>
+        <td>
+            @Model.CarMake
+        </td>
+        <td>
+            @Model.CarModel
+        </td>
+        <td>
+            $@Model.Price
+        </td>
+        <td>
+            @Model.Discount.ToString("F2")%
+        </td>
+        <td>
+            $@Model.DiscountedPrice.ToString("F2")
+        </td>
+    </tr>
+</table>

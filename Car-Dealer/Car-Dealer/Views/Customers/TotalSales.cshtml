@@ -1,15 +1,15 @@
 ﻿@model CustomerTotalSalesModel;
 
 @{
-    ViewData["Title"] = $"Customer {Model.Name}";
+    ViewData["Title"] = $"{Model.Name}";
 }
 
 <h2>@ViewData["Title"]</h2>
 
 <p>
-    @Model.BoughtCars.Count() Cars bought 
+    <h3>Cars bought: @Model.BoughtCars.Count()</h3>  
 </p>
 
 <p>
-    Total spent: @Model.TotalMoneySpent.ToString("F2")$
+    <h4>Total spent: @Model.TotalMoneySpent.ToString("F2")$</h4>
 </p>

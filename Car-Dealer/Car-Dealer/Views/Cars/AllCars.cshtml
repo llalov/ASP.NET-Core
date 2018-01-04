@@ -1,16 +1,16 @@
-﻿@model ByMakeCarsModel
+﻿@model IEnumerable<CarModel>
 
 @{
-    ViewData["Title"] = "By Make";
+    ViewData["Title"] = "Cars";
 }
 
-<h2>By Make - @Model.Make</h2>
+<h2>@ViewData["Title"]</h2>
 
 <table class="table table-bordered table-hover">
     <thead>
         <tr>
             <th>
-                Make    
+                Make
             </th>
             <th>
                 Model
@@ -18,13 +18,17 @@
             <th>
                 Travelled Distance
             </th>
+            <th>
+ 
+            </th>
         </tr>
     </thead>
     <tbody>
-@foreach (var car in Model.Cars) {
+        @foreach (var car in Model)
+        {
         <tr>
             <td>
-                @car.Make
+                <a href="/cars/@car.Make">@car.Make</a>
             </td>
             <td>
                 @car.Model
@@ -32,7 +36,10 @@
             <td>
                 @car.TravelledDistance km
             </td>
+            <td>
+                <a href="cars/@car.Id/parts" class="btn btn-default">Check Parts</a>
+            </td>
         </tr>
-}
+        }
     </tbody>
 </table>

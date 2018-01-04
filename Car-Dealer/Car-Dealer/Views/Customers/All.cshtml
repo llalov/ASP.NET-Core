@@ -1,11 +1,11 @@
 ﻿@model AllCustomersModel
 
 @{
-    ViewData["Title"] = "All Customers";
+    ViewData["Title"] = "Customers";
 }
 
-<h2>All Customers</h2>
-<h3>Orderd in @Model.OrderDirection.ToString().ToLower() direction</h3>
+<h2>@ViewData["Title"]</h2>
+<h5>Orderd in @Model.OrderDirection.ToString().ToLower() direction</h5>
 
 <table class="table table-bordered table-hover">
     <thead>
@@ -26,7 +26,7 @@
         {
         <tr>
             <td>
-                @customer.Name
+                <a href="/customers/@customer.Id">@customer.Name</a>
             </td>
             <td>
                 @customer.BirthDay.ToShortDateString()

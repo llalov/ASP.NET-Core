@@ -33,7 +33,9 @@
                     <li><a asp-area="" asp-controller="Home" asp-action="Index">Home</a></li>
                 </ul>
                 <ul class="nav navbar-nav">
-                    <li><a asp-area="" asp-controller="Customers" asp-action="All">Customers</a></li>
+                    <li><a href="/customers/all/ascending">Customers</a></li>
+                    <li><a href="/cars">Cars</a></li>
+                    <li><a href="/sales">Sales</a></li>
                 </ul>
                 @await Html.PartialAsync("_LoginPartial")
             </div>
