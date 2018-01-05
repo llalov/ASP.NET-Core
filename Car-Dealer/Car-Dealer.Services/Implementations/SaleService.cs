@@ -43,8 +43,16 @@
                 .FirstOrDefault();
 
         public IEnumerable<SaleListModel> Discounted()
-        {
-            throw new System.NotImplementedException();
-        }
+            => this.Db.Sales
+                .Where(s => s.Discount > 0)
+                .Select(s => new SaleListModel
+                {
+                    Id = s.Id,
+                    CustomerName = s.Customer.Name,
+                    Discount = s.Discount,
+                    IsYoungDriver = s.Customer.IsYoungDriver,
+                    Price = s.Car.Parts.Sum(p => p.Part.Price),
+                })
+                .ToList();
     }
 }

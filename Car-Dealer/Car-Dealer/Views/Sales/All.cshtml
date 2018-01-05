@@ -6,7 +6,7 @@
 }
 
 <h2>@ViewData["Title"]</h2>
-
+<a href="/sales/discounted" class="btn btn-default" >Check Discounted Sales</a><br/><br />
 <table class="table table-bordered table-hover">
     <tr>
         <th>
@@ -41,7 +41,7 @@
             $@sale.DiscountedPrice.ToString("F2")
         </td>
         <td>
-            <a href="sales/@sale.Id" class="btn btn-default">Details</a> 
+            <a href="/sales/@sale.Id" class="btn btn-default">Details</a> 
         </td>
     </tr>
     }

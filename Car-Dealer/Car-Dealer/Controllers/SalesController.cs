@@ -23,6 +23,6 @@
 
         [Route("discounted")]
         public IActionResult Discounted()
-            => View();
+            => View(this.Sales.Discounted());
     }
 }
