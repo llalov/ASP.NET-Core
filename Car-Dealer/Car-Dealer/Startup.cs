@@ -52,7 +52,10 @@
             }
             else
             {
-                app.UseExceptionHandler("/Home/Error");
+                app.UseDeveloperExceptionPage();
+                app.UseBrowserLink();
+                app.UseDatabaseErrorPage();
+                //app.UseExceptionHandler("/Home/Error");
             }
 
             app.UseStaticFiles();

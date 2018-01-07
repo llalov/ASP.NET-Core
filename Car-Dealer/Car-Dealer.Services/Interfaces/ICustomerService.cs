@@ -3,11 +3,20 @@
     using System.Collections.Generic;
     using Models.Customers;
     using Models;
+    using System;
 
     public interface ICustomerService
     {
         IEnumerable<CustomerModel> OrderedCustomers(OrderDirection order);
 
         CustomerTotalSalesModel TotalSalesById(int id);
+
+        CustomerModel ById(int id);
+
+        void CreateCustomer(string name, DateTime birthDate, bool isYoungDriver);
+
+        void Edit(int id, string name, DateTime birthDay, bool isYoungDriver);
+
+        bool Exists(int id);        
     }
 }

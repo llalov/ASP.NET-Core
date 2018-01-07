@@ -23,7 +23,6 @@
             var orderDirection = order == "descending"
                 ? OrderDirection.Descending
                 : OrderDirection.Ascending;
-
             var result = this.customers.OrderedCustomers(orderDirection);
 
             return View(new AllCustomersModel
@@ -45,6 +44,62 @@
                 IsYoungDriver = result.IsYoungDriver,
                 BoughtCars = result.BoughtCars
             });
+        }
+
+        [Route("create")]
+        public IActionResult Create() 
+            => View();
+
+        [HttpPost]
+        [Route (nameof(Create))]
+        public IActionResult Create(CustomerFormModel model)
+        {
+            if (!ModelState.IsValid)
+                return View(model);
+            
+            this.customers.CreateCustomer(
+                model.Name,
+                model.BirthDay,
+                model.IsYoungDriver
+                );
+            return RedirectToAction(nameof(All), new { order = OrderDirection.Ascending});
+        }
+
+        [Route("edit/{id}")]
+        public IActionResult Edit(int id)
+        {
+            var customer = this.customers.ById(id);
+
+            if (customer == null)
+                return NotFound();
+            
+            return View(new CustomerFormModel
+            {
+                Name = customer.Name,
+                BirthDay = customer.BirthDay,
+                IsYoungDriver = customer.IsYoungDriver
+            });
+        }
+
+        [HttpPost]
+        [Route("edit/{id}")]
+        public IActionResult Edit(int id, CustomerFormModel model)
+        {
+            if (!ModelState.IsValid)
+                return View(model);
+
+            bool customerExists = this.customers.Exists(id);
+            if (!customerExists)
+                return NotFound();
+
+            this.customers.Edit(
+                id,
+                model.Name,
+                model.BirthDay,
+                model.IsYoungDriver
+                );
+
+            return RedirectToAction(nameof(All), new { order = OrderDirection.Ascending });
         }
     }
 }

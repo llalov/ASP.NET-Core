@@ -2,6 +2,7 @@
 {
     using System.Collections.Generic;
     using Models;
+    using Data.Models;
     using Models.Customers;
     using Data;
     using System.Linq;
@@ -31,7 +32,8 @@
                     Price = s.Car.Parts.Sum(p => p.Part.Price),
                     Discount = s.Discount
                 })
-            }).FirstOrDefault();
+            })
+            .FirstOrDefault();
 
         public IEnumerable<CustomerModel> OrderedCustomers(OrderDirection order)
         {
@@ -58,6 +60,44 @@
                     IsYoungDriver = c.IsYoungDriver
                 })
                 .ToList();
+        }
+
+        public void CreateCustomer(string name, DateTime birthDate, bool isYoungDriver)
+        {
+            var customer = new Customer
+            {
+                Name = name,
+                BirthDate = birthDate,
+                IsYoungDriver = isYoungDriver
+            };
+            this.Db.Add(customer);
+            this.Db.SaveChanges();
+        }
+
+        public CustomerModel ById(int id)
+            => this.Db
+                .Customers
+                .Where(c => c.Id == id)
+                .Select(c => new CustomerModel
+                {
+                    Name = c.Name,
+                    BirthDay = c.BirthDate,
+                    IsYoungDriver = c.IsYoungDriver
+                })
+                .FirstOrDefault();
+
+        public bool Exists(int id)
+            => this.Db
+                .Customers
+                .Any(c => c.Id == id);
+
+        public void Edit(int id, string name, DateTime birthDay, bool isYoungDriver)
+        {
+            var customer = this.Db.Customers.Find(id);
+            customer.Name = name;
+            customer.BirthDate = birthDay;
+            customer.IsYoungDriver = isYoungDriver;
+            this.Db.SaveChanges();
         }
     }
 }
