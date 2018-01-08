@@ -37,6 +37,7 @@
             services.AddTransient<ICarService, CarService>();
             services.AddTransient<ISupplierService, SupplierService>();
             services.AddTransient<ISaleService, SaleService>();
+            services.AddTransient<IPartsService, PartService>();
 
             services.AddMvc();
         }
@@ -52,10 +53,7 @@
             }
             else
             {
-                app.UseDeveloperExceptionPage();
-                app.UseBrowserLink();
-                app.UseDatabaseErrorPage();
-                //app.UseExceptionHandler("/Home/Error");
+                app.UseExceptionHandler("/Home/Error");
             }
 
             app.UseStaticFiles();
