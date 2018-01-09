@@ -5,6 +5,8 @@
    
     public interface ISupplierService
     {
-        IEnumerable<SupplierListModel> All(bool isImporter);
+        IEnumerable<SupplierListModel> AllDetailed(bool isImporter);
+
+        IEnumerable<SupplierModel> All();
     }
 }

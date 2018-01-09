@@ -15,8 +15,9 @@
             this.Db = db;
         }
 
-        public IEnumerable<SupplierListModel> All(bool isImporter)
-            =>this.Db.Suppliers
+        public IEnumerable<SupplierListModel> AllDetailed(bool isImporter)
+            => this.Db
+                .Suppliers
                 .Where(s => s.IsImporter == isImporter)
                 .Select(s => new SupplierListModel
                 {
@@ -24,6 +25,17 @@
                     Name = s.Name,
                     TotalParts = s.Parts.Count(),
                     IsImporter = s.IsImporter
+                })
+                .ToList();
+
+        public IEnumerable<SupplierModel> All()
+            => this.Db
+                .Suppliers
+                .OrderBy(s => s.Name)
+                .Select(s => new SupplierModel
+                {
+                    Id = s.Id,
+                    Name = s.Name
                 })
                 .ToList();
     }

@@ -22,7 +22,7 @@
         private SuppliersModel GetSupplierModel(bool importers)
         {
             var type = importers ? "Importer" : "Local";
-            var suppliers = this.Suppliers.All(importers);
+            var suppliers = this.Suppliers.AllDetailed(importers);
 
             return new SuppliersModel
             {

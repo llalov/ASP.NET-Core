@@ -65,7 +65,7 @@
             routes.MapRoute(
                 name: "customers",
                 template: "customers/all/{order}",
-                defaults: new { controller = "Customers", action = "All", order = "ascending" });
+                defaults: new { controller = "Customers", action = "AllDetailed", order = "ascending" });
 
                 routes.MapRoute(
                     name: "default",
