@@ -13,6 +13,8 @@
 
         void Edit(decimal price, int quantity);
 
+        void Delete(int id);
+
         bool Exists(int id);
     }
 }

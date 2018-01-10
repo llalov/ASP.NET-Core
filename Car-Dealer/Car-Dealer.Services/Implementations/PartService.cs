@@ -65,5 +65,15 @@
             => this.Db
                 .Parts
                 .Any(p => p.Id == id);
+
+        public void Delete(int id)
+        {
+            var part = this.Db.Parts.Find(id);
+            if (part == null)
+                return;
+
+            this.Db.Parts.Remove(part);
+            this.Db.SaveChanges();
+        }
     }
 }

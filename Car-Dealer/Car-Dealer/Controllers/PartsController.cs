@@ -68,5 +68,14 @@
             });
         }
 
+        [Route("delete/{id}")]
+        public IActionResult Delete(int id)
+        {
+            this.Parts.Delete(id);
+
+            
+            return RedirectToAction(nameof(All));
+        }
+
     }
 }
