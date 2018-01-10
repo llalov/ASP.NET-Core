@@ -19,6 +19,7 @@
         public int Quantity { get; set; }
 
         [Display(Name = "Supplier")]
+        [Required]
         public int SupplierId { get; set; }
 
         public IEnumerable<SelectListItem> Suppliers { get; set; }

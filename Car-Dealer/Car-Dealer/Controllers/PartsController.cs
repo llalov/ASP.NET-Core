@@ -10,12 +10,12 @@
     public class PartsController : Controller
     {
         private readonly IPartsService Parts;
-        private readonly ISupplierService suppliers;
+        private readonly ISupplierService Suppliers;
 
         public PartsController(IPartsService parts, ISupplierService suppliers)
         {
             this.Parts = parts;
-            this.suppliers = suppliers;
+            this.Suppliers = suppliers;
         }
 
         [Route("")]
@@ -26,11 +26,47 @@
         public IActionResult Add()
             => View(new PartFormModel
             {
-                Suppliers = suppliers.All().Select(s => new SelectListItem
+                Suppliers = Suppliers.All().Select(s => new SelectListItem
                 {
                     Text = s.Name,
                     Value = s.Id.ToString()
                 })
             });
+
+        [HttpPost]
+        [Route("add")]
+        public IActionResult Add(PartFormModel model)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View(new PartFormModel
+                {
+                    Suppliers = Suppliers.All().Select(s => new SelectListItem
+                    {
+                        Text = s.Name,
+                        Value = s.Id.ToString()
+                    })
+                });
+            }
+            this.Parts.Add(model.Name, model.Price, model.SupplierId, model.Quantity);
+            return RedirectToAction(nameof(All));
+        }
+
+        [Route("edit/{id}")]
+        public IActionResult Edit(int id)
+        {
+            if (!this.Parts.Exists(id))
+                return NotFound();
+
+            var part = this.Parts.ById(id);
+
+            return View(new PartFormModel
+            {
+                Name = part.Name,
+                Price = part.Price,
+                Quantity = part.Quantity
+            });
+        }
+
     }
 }

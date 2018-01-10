@@ -32,8 +32,9 @@
                 <ul class="nav navbar-nav">
                     <li><a asp-area="" asp-controller="Home" asp-action="Index">Home</a></li>
                     <li class="dropdown">
-                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                        <a class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" href="#">
                             Customers
+                            <span class="dwn" style="font-size:7px; vertical-align:text-top">▼</span>
                         </a>
                         <ul class="dropdown-menu">
                             <li><a href="/customers/all/ascending">All</a></li>

@@ -7,8 +7,12 @@
     {
         IEnumerable<PartListModel> AllParts();
 
-        void Add(string name, decimal price, int supplierId);
+        PartListModel ById(int id);
+
+        void Add(string name, decimal price, int supplierId, int quantity);
 
         void Edit(decimal price, int quantity);
+
+        bool Exists(int id);
     }
 }
