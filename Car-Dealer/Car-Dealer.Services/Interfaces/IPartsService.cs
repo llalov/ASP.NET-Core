@@ -11,7 +11,7 @@
 
         void Add(string name, decimal price, int supplierId, int quantity);
 
-        void Edit(decimal price, int quantity);
+        void Edit(int id, decimal price, int quantity);
 
         void Delete(int id);
 

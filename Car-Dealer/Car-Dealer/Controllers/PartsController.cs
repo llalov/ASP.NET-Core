@@ -57,15 +57,30 @@
         {
             if (!this.Parts.Exists(id))
                 return NotFound();
-
             var part = this.Parts.ById(id);
-
+            ViewBag.PartId = id;
+  
             return View(new PartFormModel
             {
                 Name = part.Name,
                 Price = part.Price,
                 Quantity = part.Quantity
             });
+        }
+
+        [HttpPost]
+        [Route("edit/{id}")]
+        public IActionResult Edit(int id, PartFormModel model)
+        {
+            if (!ModelState.IsValid)
+                return View(model);
+
+            bool partExists = this.Parts.Exists(id);
+            if (!partExists)
+                return NotFound();
+
+            this.Parts.Edit(id, model.Price, model.Quantity);
+            return RedirectToAction(nameof(All));
         }
 
         [Route("delete/{id}")]

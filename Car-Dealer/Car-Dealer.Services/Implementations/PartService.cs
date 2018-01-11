@@ -56,9 +56,15 @@
             this.Db.SaveChanges();
         }
 
-        public void Edit(decimal price, int quantity)
+        public void Edit(int id, decimal price, int quantity)
         {
-            throw new System.NotImplementedException();
+            var part = this.Db.Parts.Find(id);
+            if (part == null)
+                return;
+            
+            part.Price = price;
+            part.Quantity = quantity;
+            this.Db.SaveChanges();
         }
 
         public bool Exists(int id)
