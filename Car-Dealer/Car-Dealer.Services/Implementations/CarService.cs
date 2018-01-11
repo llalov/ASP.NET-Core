@@ -2,6 +2,7 @@
 {
     using System.Collections.Generic;
     using Data;
+    using Data.Models;
     using Car_Dealer.Services.Models.Cars;
     using Models.Parts;
     using System.Linq;
@@ -56,5 +57,18 @@
                     })
                 })
                 .FirstOrDefault();
+
+        public void Add(string make, string model, long travelledDistance)
+        {
+            var car = new Car
+            {
+                Make = make,
+                Model = model,
+                TravelledDistance = travelledDistance
+            };
+
+            this.Db.Add(car);
+            this.Db.SaveChanges();
+        }
     }
 }

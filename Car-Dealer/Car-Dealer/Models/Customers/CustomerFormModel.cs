@@ -1,8 +1,8 @@
-﻿using System;
-using System.ComponentModel.DataAnnotations;
-
-namespace Car_Dealer.Models.Customers
+﻿namespace Car_Dealer.Models.Customers
 {
+    using System;
+    using System.ComponentModel.DataAnnotations;
+
     public class CustomerFormModel
     {
         [Required]

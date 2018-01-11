@@ -5,6 +5,8 @@
 }
 
 <h2>@ViewData["Title"]</h2>
+<a href="/cars/add" class="btn btn-default">+ Add Car</a>
+<br /><br />
 
 <table class="table table-bordered table-hover">
     <thead>
@@ -19,27 +21,27 @@
                 Travelled Distance
             </th>
             <th>
- 
+
             </th>
         </tr>
     </thead>
     <tbody>
         @foreach (var car in Model)
         {
-        <tr>
-            <td>
-                <a href="/cars/@car.Make">@car.Make</a>
-            </td>
-            <td>
-                @car.Model
-            </td>
-            <td>
-                @car.TravelledDistance km
-            </td>
-            <td>
-                <a href="cars/@car.Id/parts" class="btn btn-default">Check Parts</a>
-            </td>
-        </tr>
+            <tr>
+                <td>
+                    <a href="/cars/@car.Make">@car.Make</a>
+                </td>
+                <td>
+                    @car.Model
+                </td>
+                <td>
+                    @car.TravelledDistance km
+                </td>
+                <td>
+                    <a href="cars/@car.Id/parts" class="btn btn-default">Check Parts</a>
+                </td>
+            </tr>
         }
     </tbody>
 </table>
