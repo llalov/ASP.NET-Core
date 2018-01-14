@@ -34,9 +34,11 @@
                 .Select(s => new SaleDetailsModel
                 {
                     CustomerName = s.Customer.Name,
+                    CustomerId = s.Customer.Id,
                     Price = s.Car.Parts.Sum(p => p.Part.Price),
                     Discount = s.Discount,
                     IsYoungDriver = s.Customer.IsYoungDriver,
+                    CarId = s.Car.Id,
                     CarMake = s.Car.Make,
                     CarModel = s.Car.Model
                 })

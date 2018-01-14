@@ -9,7 +9,7 @@
     {
         IEnumerable<CustomerModel> OrderedCustomers(OrderDirection order);
 
-        CustomerTotalSalesModel TotalSalesById(int id);
+        CustomerDetailsModel TotalSalesById(int id);
 
         CustomerModel ById(int id);
 

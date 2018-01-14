@@ -22,7 +22,7 @@
             Car Model
         </th>
         <th>
-            Price
+            Total Price
         </th>
         <th>
             Discount
@@ -46,6 +46,7 @@
         </td>
         <td>
             $@Model.Price
+            <a href="/cars/@Model.CarId/parts"><br/>See more...</a>
         </td>
         <td>
             @Model.Discount.ToString("F2")%

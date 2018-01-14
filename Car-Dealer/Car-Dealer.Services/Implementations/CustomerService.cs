@@ -19,14 +19,15 @@
             this.Db = db;
         }
 
-        public CustomerTotalSalesModel TotalSalesById(int id)
+        public CustomerDetailsModel TotalSalesById(int id)
             => this.Db.Customers
             .Where(c => c.Id == id)
-            .Select(c => new CustomerTotalSalesModel
+            .Select(c => new CustomerDetailsModel
             {
                 Id = c.Id,
                 Name = c.Name,
                 IsYoungDriver = c.IsYoungDriver,
+                BirthDay = c.BirthDate,
                 BoughtCars = c.Sales.Select(s => new SaleModel
                 {
                     Price = s.Car.Parts.Sum(p => p.Part.Price),

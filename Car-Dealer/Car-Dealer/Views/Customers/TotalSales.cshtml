@@ -1,4 +1,4 @@
-﻿@model CustomerTotalSalesModel;
+﻿@model CustomerDetailsModel;
 
 @{
     ViewData["Title"] = $"{Model.Name}";
@@ -7,9 +7,5 @@
 <h2>@ViewData["Title"]</h2>
 
 <p>
-    <h3>Cars bought: @Model.BoughtCars.Count()</h3>  
-</p>
-
-<p>
-    <h4>Total spent: @Model.TotalMoneySpent.ToString("F2")$</h4>
+    <h3>@(Model.IsYoungDriver == true ? "Young driver" : "Experienced driver")</h3>
 </p>

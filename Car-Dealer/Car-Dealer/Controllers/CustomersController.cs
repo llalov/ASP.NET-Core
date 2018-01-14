@@ -34,7 +34,7 @@
         public IActionResult TotalSales(int id)
         {
             var result = this.customers.TotalSalesById(id);
-            return View(new CustomerTotalSalesModel
+            return View(new CustomerDetailsModel
             {
                 Id = result.Id,
                 Name = result.Name,

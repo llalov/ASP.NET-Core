@@ -1,7 +1,7 @@
 ﻿@model CarWithPartsModel
 
 @{
-    ViewData["Title"] = $"Parts - {Model.Make} {Model.Model}";
+    ViewData["Title"] = $"Parts Purchased";
 }
 
 <h2>@ViewData["Title"]</h2>
@@ -17,9 +17,6 @@
                 Model
             </th>
             <th>
-                Travelled Distance
-            </th>
-            <th>
                 Parts
             </th>
         </tr>
@@ -31,9 +28,6 @@
             </td>
             <td>
                 @Model.Model
-            </td>
-            <td>
-                @Model.TravelledDistance km
             </td>
             <td>
                 <ul>
