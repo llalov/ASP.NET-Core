@@ -99,5 +99,14 @@
             customer.IsYoungDriver = isYoungDriver;
             this.Db.SaveChanges();
         }
+
+        public void Delete(int id)
+        {
+            var customer = this.Db.Customers.Find(id);
+            if (customer == null)
+                return;
+            this.Db.Remove(customer);
+            this.Db.SaveChanges();
+        }
     }
 }

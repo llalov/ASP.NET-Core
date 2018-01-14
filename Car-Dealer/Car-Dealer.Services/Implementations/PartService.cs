@@ -77,7 +77,6 @@
             var part = this.Db.Parts.Find(id);
             if (part == null)
                 return;
-
             this.Db.Parts.Remove(part);
             this.Db.SaveChanges();
         }

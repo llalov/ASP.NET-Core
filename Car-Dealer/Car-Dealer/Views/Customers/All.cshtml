@@ -3,10 +3,10 @@
 @{
     ViewData["Title"] = "Customers";
 }
-
 <h2>@ViewData["Title"]</h2>
+<a href="/customers/create" class="btn btn-default">+ Add Customer</a>
+<br /><br />
 <h5>Orderd in @Model.OrderDirection.ToString().ToLower() direction</h5>
-
 <table class="table table-bordered table-hover">
     <thead>
         <tr>
@@ -24,22 +24,22 @@
         </tr>
     </thead>
     <tbody>
-        @foreach(var customer in Model.Customers)
+        @foreach (var customer in Model.Customers)
         {
-        <tr>
-            <td>
-                <a href="/customers/@customer.Id">@customer.Name</a>
-            </td>
-            <td>
-                @customer.BirthDay.ToShortDateString()
-            </td>
-            <td>
-                @(customer.IsYoungDriver ? "Yes" : "No")
-            </td>
-            <td>
-                <a href="/customers/edit/@customer.Id" class="btn btn-warning btn-sm">Edit</a>
-            </td>
-        </tr>
+            <tr>
+                <td>
+                    <a href="/customers/@customer.Id">@customer.Name</a>
+                </td>
+                <td>
+                    @customer.BirthDay.ToShortDateString()
+                </td>
+                <td>
+                    @(customer.IsYoungDriver ? "Yes" : "No")
+                </td>
+                <td>
+                    <a href="/customers/edit/@customer.Id" class="btn btn-warning btn-sm">Edit</a>
+                </td>
+            </tr>
         }
     </tbody>
 </table>

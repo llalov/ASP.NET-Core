@@ -17,6 +17,8 @@
 
         void Edit(int id, string name, DateTime birthDay, bool isYoungDriver);
 
-        bool Exists(int id);        
+        void Delete(int id);
+
+        bool Exists(int id);
     }
 }
