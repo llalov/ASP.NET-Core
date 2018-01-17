@@ -11,6 +11,6 @@
 
         IEnumerable<CarModel> AllCars();
 
-        void Add(string make, string model, long travelledDistance);
+        void Add(string make, string model, long travelledDistance, IEnumerable<int> partIds);
     }
 }

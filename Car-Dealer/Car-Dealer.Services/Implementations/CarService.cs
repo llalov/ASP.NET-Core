@@ -58,14 +58,25 @@
                 })
                 .FirstOrDefault();
 
-        public void Add(string make, string model, long travelledDistance)
+        public void Add(string make, string model, long travelledDistance, IEnumerable<int> partIds)
         {
+            var existingParts = this.Db
+                .Parts
+                .Where(p => partIds.Contains(p.Id))
+                .Select(p => p.Id)
+                .ToList();
+
             var car = new Car
             {
                 Make = make,
                 Model = model,
                 TravelledDistance = travelledDistance
             };
+
+            foreach (var partId in existingParts)
+            {
+                car.Parts.Add(new PartCar { PartId = partId });
+            }
 
             this.Db.Add(car);
             this.Db.SaveChanges();

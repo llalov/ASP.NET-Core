@@ -5,7 +5,9 @@
 
     public interface IPartsService
     {
-        IEnumerable<PartListModel> AllParts();
+        IEnumerable<PartListModel> AllListParts();
+
+        IEnumerable<PartBasicModel> AllParts();
 
         PartListModel ById(int id);
 

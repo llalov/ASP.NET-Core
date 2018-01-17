@@ -20,7 +20,7 @@
 
         [Route("")]
         public IActionResult All()
-            => View(this.Parts.AllParts());
+            => View(this.Parts.AllListParts());
 
         [Route("add")]
         public IActionResult Add()

@@ -16,7 +16,7 @@
             this.Db = db;
         }
 
-        public IEnumerable<PartListModel> AllParts()
+        public IEnumerable<PartListModel> AllListParts()
             => this.Db
                 .Parts
                 .Select(p => new PartListModel
@@ -80,5 +80,16 @@
             this.Db.Parts.Remove(part);
             this.Db.SaveChanges();
         }
+
+        public IEnumerable<PartBasicModel> AllParts()
+            => this.Db
+                .Parts
+                .OrderBy(p => p.Id)
+                .Select(p => new PartBasicModel
+                {
+                    Id = p.Id,
+                    Name = p.Name
+                })
+                .ToList();
     }
 }

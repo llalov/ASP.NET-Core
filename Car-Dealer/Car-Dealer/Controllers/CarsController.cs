@@ -3,15 +3,19 @@
     using Microsoft.AspNetCore.Mvc;
     using Services.Interfaces;
     using Models.Cars;
+    using System.Linq;
+    using Microsoft.AspNetCore.Mvc.Rendering;
 
     [Route("cars")]
     public class CarsController : Controller
     {
         private readonly ICarService Cars;
+        private readonly IPartsService partsService;
 
-        public CarsController(ICarService cars)
+        public CarsController(ICarService cars, IPartsService parts)
         {
             this.Cars = cars;
+            this.partsService = parts;
         }
 
         [Route("")]
@@ -35,16 +39,38 @@
 
         [Route(nameof(Add))]
         public IActionResult Add()
-            => View();
+            => View(new CarFormModel
+            {
+                Parts = this.partsService
+                    .AllParts()
+                    .Select(p => new SelectListItem
+                    {
+                        Text = p.Name,
+                        Value = p.Id.ToString()
+                    })                 
+            });
 
         [HttpPost]
         [Route(nameof(Add))]
         public IActionResult Add(CarFormModel carModel)
         {
             if (!ModelState.IsValid)    
-                return View(carModel);
+                return View(new CarFormModel
+                {
+                    Parts = this.partsService
+                        .AllParts()
+                        .Select(p => new SelectListItem
+                        {
+                            Text = p.Name,
+                            Value = p.Id.ToString()
+                        })
+                });
 
-            this.Cars.Add(carModel.Make, carModel.Model, carModel.TravelledDistance);
+            this.Cars.Add(
+                carModel.Make, 
+                carModel.Model, 
+                carModel.TravelledDistance,
+                carModel.PartsIds);
 
             return RedirectToAction(nameof(AllCars));
         }
