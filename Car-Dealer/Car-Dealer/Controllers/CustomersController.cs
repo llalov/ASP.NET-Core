@@ -5,6 +5,7 @@
     using Services.Models;
     using Models.Customers;
     using Services.Models.Customers;
+    using Microsoft.AspNetCore.Authorization;
 
     [Route("customers")]
     public class CustomersController : Controller
@@ -43,10 +44,12 @@
             });
         }
 
+        [Authorize]
         [Route("create")]
         public IActionResult Create() 
             => View();
 
+        [Authorize]
         [HttpPost]
         [Route (nameof(Create))]
         public IActionResult Create(CustomerFormModel model)
@@ -61,6 +64,7 @@
             return RedirectToAction(nameof(All), new { order = OrderDirection.Ascending});
         }
 
+        [Authorize]
         [Route("edit/{id}")]
         public IActionResult Edit(int id)
         {
@@ -77,6 +81,7 @@
             });
         }
 
+        [Authorize]
         [HttpPost]
         [Route("edit/{id}")]
         public IActionResult Edit(int id, CustomerFormModel model)
@@ -95,6 +100,7 @@
             return RedirectToAction(nameof(All), new { order = OrderDirection.Ascending });
         }
 
+        [Authorize]
         [Route("delete/{id}")]
         public IActionResult Delete(int id)
         {

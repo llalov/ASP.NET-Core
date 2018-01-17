@@ -5,6 +5,7 @@
     using Models.Cars;
     using System.Linq;
     using Microsoft.AspNetCore.Mvc.Rendering;
+    using Microsoft.AspNetCore.Authorization;
 
     [Route("cars")]
     public class CarsController : Controller
@@ -37,6 +38,7 @@
         public IActionResult Parts(int id)
             => View(this.Cars.CarParts(id));
 
+        [Authorize]
         [Route(nameof(Add))]
         public IActionResult Add()
             => View(new CarFormModel
@@ -50,6 +52,7 @@
                     })                 
             });
 
+        [Authorize]
         [HttpPost]
         [Route(nameof(Add))]
         public IActionResult Add(CarFormModel carModel)
