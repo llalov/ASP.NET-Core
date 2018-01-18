@@ -21,7 +21,7 @@
 
         [Route("")]
         public IActionResult AllCars()
-            => View(this.Cars.AllCars());
+            => View(this.Cars.AllListCars());
         
 
         [Route("{make}", Order = 2)]

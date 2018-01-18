@@ -9,7 +9,9 @@
 
         CarWithPartsModel CarParts(int carId);
 
-        IEnumerable<CarModel> AllCars();
+        IEnumerable<CarModel> AllListCars();
+
+        IEnumerable<CarBasicModel> AllCars();
 
         void Add(string make, string model, long travelledDistance, IEnumerable<int> partIds);
     }

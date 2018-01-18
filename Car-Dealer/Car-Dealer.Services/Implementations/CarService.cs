@@ -17,7 +17,7 @@
             this.Db = db;
         }
 
-        public IEnumerable<CarModel> AllCars()
+        public IEnumerable<CarModel> AllListCars()
             => this.Db.Cars
             .OrderBy(c => c.Make)
             .Select(c => new CarModel
@@ -81,5 +81,17 @@
             this.Db.Add(car);
             this.Db.SaveChanges();
         }
+
+        public IEnumerable<CarBasicModel> AllCars()
+            => this.Db
+                .Cars
+                .OrderBy(c => c.Make)
+                .Select(c => new CarBasicModel
+                {
+                    Id = c.Id,
+                    Make = c.Make,
+                    Model = c.Model
+                })
+                .ToList();
     }
 }

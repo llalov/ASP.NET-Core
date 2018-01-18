@@ -9,6 +9,8 @@
     {
         IEnumerable<CustomerModel> OrderedCustomers(OrderDirection order);
 
+        IEnumerable<CustomerBasicModel> AllCustomers();
+
         CustomerDetailsModel TotalSalesById(int id);
 
         CustomerModel ById(int id);

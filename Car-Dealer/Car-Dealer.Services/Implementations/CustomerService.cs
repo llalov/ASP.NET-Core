@@ -39,7 +39,6 @@
         public IEnumerable<CustomerModel> OrderedCustomers(OrderDirection order)
         {
             var customersQuery = this.Db.Customers.AsQueryable();
-
             switch (order)
             {
                 case OrderDirection.Ascending:
@@ -51,7 +50,6 @@
                 default:
                     throw new InvalidOperationException($"Invalid order direction: {order}");
             }
-
             return customersQuery
                 .Select(c => new CustomerModel
                 {
@@ -109,5 +107,16 @@
             this.Db.Remove(customer);
             this.Db.SaveChanges();
         }
+
+        public IEnumerable<CustomerBasicModel> AllCustomers()
+            => this.Db
+                .Customers
+                .OrderBy(c => c.Name)
+                .Select(c => new CustomerBasicModel
+                {
+                    Id = c.Id,
+                    Name = c.Name
+                })
+                .ToList();
     }
 }
