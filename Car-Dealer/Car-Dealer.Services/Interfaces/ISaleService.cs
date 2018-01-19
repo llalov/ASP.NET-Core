@@ -10,5 +10,7 @@
         IEnumerable<SaleListModel> Discounted();
 
         SaleDetailsModel Details(int id);
+
+        void Add(int carId, int customerId, double discount);
     }
 }

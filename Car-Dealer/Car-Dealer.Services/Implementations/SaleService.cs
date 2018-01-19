@@ -3,6 +3,7 @@
     using Data;
     using System.Linq;
     using Interfaces;
+    using Data.Models;
     using Car_Dealer.Services.Models.Sales;
     using System.Collections.Generic;
 
@@ -56,5 +57,17 @@
                     Price = s.Car.Parts.Sum(p => p.Part.Price),
                 })
                 .ToList();
+
+        public void Add(int carId, int customerId, double discount)
+        {
+            var sale = new Sale
+            {
+                CarId = carId,
+                CustomerId = customerId,
+                Discount = discount
+            };
+            this.Db.Add(sale);
+            this.Db.SaveChanges();
+        }
     }
 }

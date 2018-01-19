@@ -6,17 +6,20 @@
 
     public class SaleFormModel
     {
-        IEnumerable<SelectListItem> Cars { get; set; }
+        public IEnumerable<SelectListItem> Cars { get; set; }
 
         [Display(Name = "Car")]
-        IEnumerable<int> CarIds { get; set; }
+        [Required]
+        public int CarId { get; set; }
 
-        IEnumerable<SelectListItem> Customers { get; set; }
+        public IEnumerable<SelectListItem> Customers { get; set; }
 
         [Display(Name = "Customer")]
-        IEnumerable<int> CustomerIds { get; set; }
+        [Required]
+        public int CustomerId { get; set; }
 
         [Range(0, 100)]
+        [Required]
         public double Discount { get; set; }
     }
 }
