@@ -6,9 +6,9 @@
     }
 
     <h2>@ViewData["Title"]</h2>
-    <a href="/sales/add" class="btn btn-default">+ Add Sale</a>
+    <a href="/sales/add" class="btn btn-success">+ Add Sale</a>
     <br /><br />
-    <a href="/sales/discounted" class="btn btn-default">Check Discounted Sales</a><br /><br />
+    <a href="/sales/discounted" class="btn btn-info">Check Discounted Sales</a><br /><br />
 
     <table class="table table-bordered table-hover">
         <tr>
@@ -30,22 +30,22 @@
         </tr>
         @foreach (var sale in Model)
         {
-            <tr>
-                <td>
-                    @sale.CustomerName
-                </td>
-                <td>
-                    $@sale.Price
-                </td>
-                <td>
-                    @sale.Discount.ToString("F2")%
-                </td>
-                <td>
-                    $@sale.DiscountedPrice.ToString("F2")
-                </td>
-                <td>
-                    <a href="/sales/@sale.Id" class="btn btn-default">Details</a>
-                </td>
-            </tr>
+        <tr>
+            <td>
+                @sale.CustomerName
+            </td>
+            <td>
+                $@sale.Price
+            </td>
+            <td>
+                @sale.Discount.ToString("F2")%
+            </td>
+            <td>
+                $@sale.DiscountedPrice.ToString("F2")
+            </td>
+            <td>
+                <a href="/sales/@sale.Id" class="btn btn-info">Details</a>
+            </td>
+        </tr>
         }
     </table>

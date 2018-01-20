@@ -1,6 +1,7 @@
 ﻿namespace Car_Dealer.Controllers
 {
     using Car_Dealer.Models.Parts;
+    using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.AspNetCore.Mvc.Rendering;
     using Services.Interfaces;
@@ -22,6 +23,7 @@
         public IActionResult All()
             => View(this.Parts.AllListParts());
 
+        [Authorize]
         [Route("add")]
         public IActionResult Add()
             => View(new PartFormModel
@@ -33,6 +35,7 @@
                 })
             });
 
+        [Authorize]
         [HttpPost]
         [Route("add")]
         public IActionResult Add(PartFormModel model)
@@ -52,6 +55,7 @@
             return RedirectToAction(nameof(All));
         }
 
+        [Authorize]
         [Route("edit/{id}")]
         public IActionResult Edit(int id)
         {
@@ -68,6 +72,7 @@
             });
         }
 
+        [Authorize]
         [HttpPost]
         [Route("edit/{id}")]
         public IActionResult Edit(int id, PartFormModel model)
@@ -83,6 +88,7 @@
             return RedirectToAction(nameof(All));
         }
 
+        [Authorize]
         [Route("delete/{id}")]
         public IActionResult Delete(int id)
         {

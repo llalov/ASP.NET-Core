@@ -69,5 +69,21 @@
             this.Db.Add(sale);
             this.Db.SaveChanges();
         }
+
+        public bool Exists(int id)
+            => this.Db
+                .Sales
+                .Where(s => s.Id == id)
+                .Any();
+
+        public void Delete(int id)
+        {
+            var sale = this.Db
+                        .Sales
+                        .Where(s => s.Id == id)
+                        .FirstOrDefault();
+            this.Db.Remove(sale);
+            this.Db.SaveChanges();
+        }
     }
 }

@@ -11,6 +11,10 @@
 
         SaleDetailsModel Details(int id);
 
+        bool Exists(int id);
+
         void Add(int carId, int customerId, double discount);
+
+        void Delete(int id);
     }
 }

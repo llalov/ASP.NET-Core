@@ -1,6 +1,7 @@
 ﻿namespace Car_Dealer.Controllers
 {
     using Car_Dealer.Models.Sale;
+    using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.AspNetCore.Mvc.Rendering;
     using Services.Interfaces;
@@ -24,14 +25,19 @@
         public IActionResult All()
             => View(this.Sales.All());
 
+        [Authorize]
         [Route("{id}")]
         public IActionResult Details(int id)
-            => View(this.Sales.Details(id));
-
+        {
+            ViewBag.SaleId = id;
+            return View(this.Sales.Details(id));
+        }
+            
         [Route("discounted")]
         public IActionResult Discounted()
             => View(this.Sales.Discounted());
 
+        [Authorize]
         [Route("add")]
         public IActionResult Add()
             => View(new SaleFormModel
@@ -48,7 +54,8 @@
                     Value = c.Id.ToString()
                 }) 
             });
-        
+
+        [Authorize]
         [HttpPost]
         [Route("add")]
         public IActionResult Add(SaleFormModel model)
@@ -70,8 +77,18 @@
                     })
                 });
             }
-
             this.Sales.Add(model.CarId, model.CustomerId, model.Discount);
+
+            return RedirectToAction(nameof(All));
+        }
+
+        [Authorize]
+        [Route("delete/{id}")]
+        public IActionResult Delete(int id)
+        {
+            if (!Sales.Exists(id))
+                return NotFound();
+            Sales.Delete(id);
 
             return RedirectToAction(nameof(All));
         }
