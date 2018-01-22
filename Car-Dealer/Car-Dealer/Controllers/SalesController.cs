@@ -8,6 +8,7 @@
     using System.Linq;
 
     [Route("sales")]
+    [Authorize]
     public class SalesController : Controller
     {
         private readonly ISaleService Sales;
@@ -22,22 +23,22 @@
         }
 
         [Route("")]
+        [AllowAnonymous]
         public IActionResult All()
             => View(this.Sales.All());
 
-        [Authorize]
         [Route("{id}")]
         public IActionResult Details(int id)
         {
             ViewBag.SaleId = id;
             return View(this.Sales.Details(id));
         }
-            
+
+        [AllowAnonymous]
         [Route("discounted")]
         public IActionResult Discounted()
             => View(this.Sales.Discounted());
 
-        [Authorize]
         [Route("add")]
         public IActionResult Add()
             => View(new SaleFormModel
@@ -55,7 +56,6 @@
                 }) 
             });
 
-        [Authorize]
         [HttpPost]
         [Route("add")]
         public IActionResult Add(SaleFormModel model)
@@ -82,7 +82,6 @@
             return RedirectToAction(nameof(All));
         }
 
-        [Authorize]
         [Route("delete/{id}")]
         public IActionResult Delete(int id)
         {

@@ -8,6 +8,7 @@
     using Microsoft.AspNetCore.Authorization;
 
     [Route("customers")]
+    [Authorize]
     public class CustomersController : Controller
     {
         private readonly ICustomerService customers;
@@ -18,6 +19,7 @@
         }
 
         [Route("all/{order}")]
+        [AllowAnonymous]
         public IActionResult All(string order)
         {
             var orderDirection = order == "descending"
@@ -32,6 +34,7 @@
         }
 
         [Route("{id}")]
+        [AllowAnonymous]
         public IActionResult TotalSales(int id)
         {
             var result = this.customers.TotalSalesById(id);
@@ -44,12 +47,10 @@
             });
         }
 
-        [Authorize]
         [Route("create")]
         public IActionResult Create() 
             => View();
 
-        [Authorize]
         [HttpPost]
         [Route (nameof(Create))]
         public IActionResult Create(CustomerFormModel model)
@@ -64,7 +65,6 @@
             return RedirectToAction(nameof(All), new { order = OrderDirection.Ascending});
         }
 
-        [Authorize]
         [Route("edit/{id}")]
         public IActionResult Edit(int id)
         {
@@ -81,7 +81,6 @@
             });
         }
 
-        [Authorize]
         [HttpPost]
         [Route("edit/{id}")]
         public IActionResult Edit(int id, CustomerFormModel model)
@@ -100,7 +99,6 @@
             return RedirectToAction(nameof(All), new { order = OrderDirection.Ascending });
         }
 
-        [Authorize]
         [Route("delete/{id}")]
         public IActionResult Delete(int id)
         {

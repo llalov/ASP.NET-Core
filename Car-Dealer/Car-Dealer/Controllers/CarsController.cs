@@ -8,6 +8,7 @@
     using Microsoft.AspNetCore.Authorization;
 
     [Route("cars")]
+    [Authorize]
     public class CarsController : Controller
     {
         private readonly ICarService Cars;
@@ -20,11 +21,12 @@
         }
 
         [Route("")]
+        [AllowAnonymous]
         public IActionResult AllCars()
             => View(this.Cars.AllListCars());
         
-
         [Route("{make}", Order = 2)]
+        [AllowAnonymous]
         public IActionResult ByMakeCars(string make)
         {
             var result = Cars.ByMakeCars(make);
@@ -35,10 +37,10 @@
         }
 
         [Route("{id}/parts", Order = 1)]
+        [AllowAnonymous]
         public IActionResult Parts(int id)
             => View(this.Cars.CarParts(id));
 
-        [Authorize]
         [Route(nameof(Add))]
         public IActionResult Add()
             => View(new CarFormModel
@@ -52,7 +54,6 @@
                     })                 
             });
 
-        [Authorize]
         [HttpPost]
         [Route(nameof(Add))]
         public IActionResult Add(CarFormModel carModel)

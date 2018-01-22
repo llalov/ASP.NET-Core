@@ -8,6 +8,7 @@
     using System.Linq;
 
     [Route("parts")]
+    [Authorize]
     public class PartsController : Controller
     {
         private readonly IPartsService Parts;
@@ -20,10 +21,10 @@
         }
 
         [Route("")]
+        [AllowAnonymous]
         public IActionResult All()
             => View(this.Parts.AllListParts());
 
-        [Authorize]
         [Route("add")]
         public IActionResult Add()
             => View(new PartFormModel
@@ -35,7 +36,6 @@
                 })
             });
 
-        [Authorize]
         [HttpPost]
         [Route("add")]
         public IActionResult Add(PartFormModel model)
@@ -55,7 +55,6 @@
             return RedirectToAction(nameof(All));
         }
 
-        [Authorize]
         [Route("edit/{id}")]
         public IActionResult Edit(int id)
         {
@@ -72,7 +71,6 @@
             });
         }
 
-        [Authorize]
         [HttpPost]
         [Route("edit/{id}")]
         public IActionResult Edit(int id, PartFormModel model)
@@ -88,7 +86,6 @@
             return RedirectToAction(nameof(All));
         }
 
-        [Authorize]
         [Route("delete/{id}")]
         public IActionResult Delete(int id)
         {
